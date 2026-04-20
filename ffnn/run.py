@@ -24,6 +24,6 @@ configs = [
     TrainConfig(model_name="E_default", layers_fn=get_layers_E, lr=1e-3),
 ]
 
-# for cfg in configs:
-#     run_train(cfg)
+for cfg in configs:
+    run_train(cfg)
 run_test(configs, checkpoint="best", save_predictions=True)
