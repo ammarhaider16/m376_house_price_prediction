@@ -24,6 +24,15 @@ configs = [
     TrainConfig(model_name="E_default", layers_fn=get_layers_E, lr=1e-3),
 ]
 
+configs.extend([
+    TrainConfig(model_name=model_name, layers_fn=layers_fn, lr=lr)
+    for lr in [0.001, 0.0005, 0.0015]
+    for model_name, layers_fn in [
+        ("A_sweep", get_layers_A,),
+        ("C_sweep", get_layers_C),
+    ]
+])
+
 for cfg in configs:
     run_train(cfg)
 run_test(configs, checkpoint="best", save_predictions=True)

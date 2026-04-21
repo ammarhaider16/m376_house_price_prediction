@@ -13,4 +13,7 @@ class TrainConfig:
     val_size:     float = 0.1
 
     def get_model_id(self) -> str:
-        return f"{self.model_name}_lr{self.lr}_wd{self.weight_decay}_bs{self.batch_size}"
+        model_id = f"{self.model_name}_lr{self.lr}_wd{self.weight_decay}_bs{self.batch_size}"
+        if self.num_epochs != 100:
+            model_id += f"_ep{self.num_epochs}"
+        return model_id
